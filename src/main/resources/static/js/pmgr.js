@@ -288,10 +288,10 @@ function generaPelicula(formulario) {
  function nuevoGrupo(formulario) {
     const group = new Pmgr.Group(-1,
         formulario.querySelector('input[name="name"]').value,
-        formulario.querySelector('input[name="owner"]').value,
-        formulario.querySelector('input[name="members"]').value,
-        formulario.querySelector('input[name="requests"]').value);
-    Pmgr.addGroup(g).then(() => {
+        0,
+        null,
+        null);
+    Pmgr.addGroup(group).then(() => {
         formulario.reset() // limpia el formulario si todo OK
         update();
     });
