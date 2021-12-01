@@ -282,6 +282,23 @@ function generaPelicula(formulario) {
 }
 
 /**
+ * Usa valores de un formulario para añadir un grupo
+ * @param {Element} formulario para con los valores a subir
+ */
+ function nuevoGrupo(formulario) {
+    const group = new Pmgr.Group(-1,
+        formulario.querySelector('input[name="name"]').value,
+        formulario.querySelector('input[name="owner"]').value,
+        formulario.querySelector('input[name="members"]').value,
+        formulario.querySelector('input[name="requests"]').value);
+    Pmgr.addGroup(g).then(() => {
+        formulario.reset() // limpia el formulario si todo OK
+        update();
+    });
+}
+
+
+/**
  * En un div que contenga un campo de texto de búsqueda
  * y un select, rellena el select con el resultado de la
  * funcion actualizaElementos (que debe generar options), y hace que
@@ -432,6 +449,7 @@ function update() {
 const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'));
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
 
+
 // si lanzas un servidor en local, usa http://localhost:8080/
 const serverUrl = "http://gin.fdi.ucm.es/iu/";
 
@@ -510,6 +528,22 @@ login("p", "p");
     stars("#movieRateForm .estrellitas");
 }
 
+{
+    /** 
+     * Asocia comportamientos al formulario de añadir películas 
+     * en un bloque separado para que las constantes y variables no salgan de aquí, 
+     * manteniendo limpio el espacio de nombres del fichero
+     */
+    const f = document.querySelector("#addGroup form");
+    // botón de enviar
+    f.querySelector("button[type='submit']").addEventListener('click', (e) => {
+        if (f.checkValidity()) {
+            e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+            nuevoGrupo(f); // añade la pelicula según los campos previamente validados
+        }
+    });
+}
+
 /**
  * búsqueda básica de películas, por título
  */
@@ -522,6 +556,8 @@ document.querySelector("#movieSearch").addEventListener("input", e => {
         c.style.display = ok ? '' : 'none';
     });
 })
+
+
 
 // cosas que exponemos para poder usarlas desde la consola
 window.modalEditMovie = modalEditMovie;
