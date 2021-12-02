@@ -201,6 +201,17 @@ function createUserItem(user) {
  * Usa valores de un formulario para añadir una película
  * @param {Element} formulario para con los valores a subir
  */
+function nuevoUsuario(formulario){
+    const user = new Pmgr.User(-1,
+        formulario.querySelector('input[name="username"]').value,
+        formulario.querySelector('input[name="password"]').value,
+        "USER", 0, 0, 0);
+        Pmgr.addUser(user).then(() => {
+            formulario.reset() // limpia el formulario si todo OK
+            update();
+        });
+}
+
 function nuevaPelicula(formulario) {
     const movie = new Pmgr.Movie(-1,
         formulario.querySelector('input[name="imdb"]').value,
@@ -544,7 +555,16 @@ login("g1", "gX82i");
         }
     });
 }
+{
+    const f = document.querySelector("#addUser form");
 
+    f.querySelector("button[type='submit']").addEventListener('click', (e) =>{
+        if(f.checkValidity()){
+            e.preventDefault();
+            nuevoUsuario(f);
+        }
+    })
+}
 /**
  * búsqueda básica de películas, por título
  */

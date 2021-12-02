@@ -552,7 +552,7 @@ async function populate(settings) {
             }, {});
 
         for (let u of users) {
-            await addUser(filter(["groups", "requests", "id"], u));
+            await (filter(["groups", "requests", "id"], u));
             idMap[u.id] = state.users.filter(x => x.username == u.username)[0].id;
         }
         for (let g of groups) {
