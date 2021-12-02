@@ -294,7 +294,7 @@ function generaPelicula(formulario) {
     Pmgr.addGroup(group).then(() => {
         formulario.reset() // limpia el formulario si todo OK
         update();
-    }).catch(e => console.log(e));
+    }).catch(e => console.log(e));;
 }
 
 
@@ -566,6 +566,7 @@ window.update = update;
 window.login = login;
 window.userId = userId;
 window.Pmgr = Pmgr;
+window.stars = stars;
 
 // ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
 // ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)
