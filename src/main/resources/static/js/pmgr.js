@@ -451,6 +451,18 @@ function update() {
         // botones de borrar grupos
         document.querySelectorAll(".iucontrol.group button.rm").forEach(b =>
             b.addEventListener('click', e => Pmgr.rmGroup(e.target.dataset.id).then(update)));
+        
+            // botón request grupo DA PROBLEMAS
+        document.querySelectorAll(".iucontrol.group button.request").forEach(b =>
+            b.addEventListener('click', e => {
+                const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
+                const request = new Request(-1,
+                    userId,
+                    id,
+                    Pmgr.RequestStatus.AWAITING_USER);
+                Pmgr.addRequest(request).then(update);
+            }));
+
         // botones de borrar usuarios
         document.querySelectorAll(".iucontrol.user button.rm").forEach(b =>
             b.addEventListener('click', e => Pmgr.rmUser(e.target.dataset.id).then(update)));
