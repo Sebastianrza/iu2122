@@ -524,15 +524,8 @@ const login = (username, password) => {
         });
 }
 
-<<<<<<< HEAD
 login("g1", "gX82i");
 
-=======
-                 // -- IMPORTANTE --
-login("p", "p"); // <-- tu nombre de usuario y password aquí
-                 //   y puedes re-logearte como alguien distinto desde  la consola
-                 //   llamando a login() con otro usuario y contraseña
->>>>>>> upstream/main
 {
     /** 
      * Asocia comportamientos al formulario de añadir películas 
