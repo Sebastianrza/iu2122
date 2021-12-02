@@ -288,7 +288,7 @@ function generaPelicula(formulario) {
  function nuevoGrupo(formulario) {
     const group = new Pmgr.Group(-1,
         formulario.querySelector('input[name="name"]').value,
-        0,
+        userId,
         null,
         null);
     Pmgr.addGroup(group).then(() => {
