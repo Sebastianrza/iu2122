@@ -598,7 +598,7 @@ login("g1", "gX82i");
 
 {
     /** 
-     * Asocia comportamientos al formulario de añadir películas 
+     * Asocia comportamientos al formulario de añadir grupos
      * en un bloque separado para que las constantes y variables no salgan de aquí, 
      * manteniendo limpio el espacio de nombres del fichero
      */
