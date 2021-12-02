@@ -243,12 +243,22 @@
 
             <div class="col-sm-4 iulist">
                 <h2>Usuarios</h2>
+                <div id="addUser" class="formularioValidado">
+                    <form class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Nombre del nuevo usuario" required>
+                            <input type="password" class="form-control" id="pass" name = "pass" placeholder="Introduce la contraseña" required>
+                            <input type="password" class="form-control" id="pass1" name = "pass1" placeholder="Introduce nuevamente la contraseña" required>
+                        </div>
+                        <div class="col-12 botones">
+                            <button class="btn btn-primary" type="submit">Añadir</button>
+                        </div>
+                    </form>
+                </div>
                 <div id="users">
 
                 </div>
-                <div id="addUser">
-
-                </div>
+                
             </div>
         </div>
         <hr>

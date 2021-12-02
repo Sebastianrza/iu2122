@@ -204,7 +204,7 @@ function createUserItem(user) {
 function nuevoUsuario(formulario){
     const user = new Pmgr.User(-1,
         formulario.querySelector('input[name="username"]').value,
-        formulario.querySelector('input[name="password"]').value,
+        formulario.querySelector('input[name="pass"]').value,
         "USER", 0, 0, 0);
         Pmgr.addUser(user).then(() => {
             formulario.reset() // limpia el formulario si todo OK
