@@ -201,6 +201,15 @@ function createUserItem(user) {
  * Usa valores de un formulario para añadir una película
  * @param {Element} formulario para con los valores a subir
  */
+
+ function validarPass(){
+    if(document.getElementById("pass").value != document.getElementById("pass1").value){
+        alert("las contraseñas no coinciden");
+        return false;
+    }else{
+        return true;
+    }
+}
 function nuevoUsuario(formulario){
     const user = new Pmgr.User(-1,
         formulario.querySelector('input[name="username"]').value,
@@ -617,7 +626,9 @@ login("g1", "gX82i");
     f.querySelector("button[type='submit']").addEventListener('click', (e) =>{
         if(f.checkValidity()){
             e.preventDefault();
-            nuevoUsuario(f);
+            if(validarPass()){
+                nuevoUsuario(f);
+            }
         }
     })
 }
