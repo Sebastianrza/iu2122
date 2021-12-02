@@ -187,46 +187,43 @@
                         <input type="search" class="form-control" id="movieSearch" placeholder="palabras del título" aria-describedby="searchMovieLabel">
                         <span class="input-group-text" id="searchMovieLabel">🔍</span>
                     </div>
+                    <div id="addMovie" class="formularioValidado">
+                        <h3>Añadir película</h3>
+                        <form class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="f1" name="name" placeholder="Título" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="f2" name="imdb" placeholder="ID en IMDB (ej.: tt1234567)" required pattern="tt[0-9]+">
+                            </div>
+    
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" name="director" placeholder="Director" required>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="actors" placeholder="Actores" required>
+                            </div>
+    
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" name="year" placeholder="Año de estreno" min="1800" max="2022" required>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="number" class="form-control" name="minutes" placeholder="Duración en minutos" min="0" max="600" required>
+                            </div>
+    
+                            <div class="col-12 botones">
+                                <button class="btn btn-primary" type="submit">Añadir</button>
+                                <button class="btn btn-secondary generar" type="button">Generar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="accordion" id="movies">
-                </div>
-                <div id="addMovie" class="formularioValidado">
-                    <h3>Añadir película</h3>
-                    <form class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="f1" name="name" placeholder="Título" required>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="f2" name="imdb" placeholder="ID en IMDB (ej.: tt1234567)" required pattern="tt[0-9]+">
-                        </div>
-
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" name="director" placeholder="Director" required>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" name="actors" placeholder="Actores" required>
-                        </div>
-
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" name="year" placeholder="Año de estreno" min="1800" max="2022" required>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="number" class="form-control" name="minutes" placeholder="Duración en minutos" min="0" max="600" required>
-                        </div>
-
-                        <div class="col-12 botones">
-                            <button class="btn btn-primary" type="submit">Añadir</button>
-                            <button class="btn btn-secondary generar" type="button">Generar</button>
-                        </div>
-                    </form>
                 </div>
             </div>
 
             <div class="col-sm-4 iulist">
                 <h2>Grupos</h2>
-                <div id="groups">
-
-                </div>
                 <div id="addGroup" class="formularioValidado">
                     <h3>Añadir grupo</h3>
                     <form class="row">
@@ -238,6 +235,10 @@
                         </div>
                     </form>
                 </div>
+                <div id="groups">
+
+                </div>
+                
             </div>
 
             <div class="col-sm-4 iulist">
