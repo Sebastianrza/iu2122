@@ -157,6 +157,7 @@ function createGroupItem(group) {
         <div class="row-sm-1 iucontrol group">
             <button class="rm" data-id="${group.id}">🗑️</button>
             <button class="edit" data-id="${group.id}">✏️</button>
+            <button class="edit" data-id="${group.id}">💌</button>
         </div>
     </div>              
     </div>
