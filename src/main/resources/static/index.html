@@ -109,12 +109,13 @@
             </div>
         </div>
     </div>
+    
 
     <!-- barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
-            <a class="navbar-brand" href="#">IU 2021-22</a>
+            <a class="navbar-brand" href="#">piu</a>
             <!-- menu hamburguesa si no cabe todo -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -200,8 +201,16 @@
                 <div id="groups">
 
                 </div>
-                <div id="addGroup">
-
+                <div id="addGroup" class="formularioValidado">
+                    <h3>Añadir grupo</h3>
+                    <form class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="f1" name="name" placeholder="Nombre del nuevo grupo" required>
+                        </div>
+                        <div class="col-12 botones">
+                            <button class="btn btn-primary" type="submit">Añadir</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
