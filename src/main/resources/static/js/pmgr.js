@@ -235,6 +235,21 @@ function modificaPelicula(formulario) {
 }
 
 /**
+ * Usa valores de un formulario para modificar una película
+ * @param {Element} formulario para con los valores a subir
+ */
+ function modificaGrupo(formulario) {
+    const group = new Pmgr.Group(
+        formulario.querySelector('input[name="id"]').value,
+        formulario.querySelector('input[name="name"]').value)
+    Pmgr.setGroup(group).then(() => {
+        formulario.reset() // limpia el formulario si todo OK
+        modalEditGroup.hide(); // oculta el formulario
+        update();
+    }).catch(e => console.log(e));
+}
+
+/**
  * Usa valores de un formulario para añadir un rating
  * @param {Element} formulario para con los valores a subir
  */
@@ -386,6 +401,20 @@ function update() {
 
                 modalEditMovie.show(); // ya podemos mostrar el formulario
             }));
+        // botones de editar grupo
+        document.querySelectorAll(".iucontrol.group button.edit").forEach(b =>
+            b.addEventListener('click', e => {
+                const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
+                const group = Pmgr.resolve(id);
+                const formulario = document.querySelector("#groupEditForm");
+                for (let [k, v] of Object.entries(group)) {
+                    // rellenamos el formulario con los valores actuales
+                    const input = formulario.querySelector(`input[name="${k}"]`);
+                    if (input) input.value = v;
+                }
+
+                modalEditGroup.show(); // ya podemos mostrar el formulario
+            }));
         // botones de evaluar películas
         document.querySelectorAll(".iucontrol.movie button.rate").forEach(b =>
             b.addEventListener('click', e => {
@@ -448,7 +477,7 @@ function update() {
 // modales, para poder abrirlos y cerrarlos desde código JS
 const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'));
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
-
+const modalEditGroup = new bootstrap.Modal(document.querySelector('#groupEdit'));
 
 // si lanzas un servidor en local, usa http://localhost:8080/
 const serverUrl = "http://gin.fdi.ucm.es/iu/";
@@ -500,6 +529,21 @@ login("g1", "gX82i");
         console.log("enviando formulario!");
         if (f.checkValidity()) {
             modificaPelicula(f); // modifica la pelicula según los campos previamente validados
+        } else {
+            e.preventDefault();
+            f.querySelector("button[type=submit]").click(); // fuerza validacion local
+        }
+    });
+}{
+    /**
+     * formulario para modificar grupos
+     */
+    const f = document.querySelector("#groupEditForm");
+    // botón de enviar
+    document.querySelector("#groupEdit button.edit").addEventListener('click', e => {
+        console.log("enviando formulario!");
+        if (f.checkValidity()) {
+            modificaGrupo(f); // modifica el grupo según los campos previamente validados
         } else {
             e.preventDefault();
             f.querySelector("button[type=submit]").click(); // fuerza validacion local

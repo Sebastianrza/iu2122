@@ -109,6 +109,32 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal para editar grupos -->
+    <div class="modal fade" id="groupEdit" tabindex="-1" aria-labelledby="groupEditLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="groupEditLabel">Editando grupo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row" id="groupEditForm">
+                        <input type="hidden" name="id">
+                        <!-- llenar desde JS -->
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="name" placeholder="Nombre" required>
+                        </div>
+                        <button style="display: none" type="submit">Invisible, sólo para validación</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary edit">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
 
     <!-- barra de navegación -->
