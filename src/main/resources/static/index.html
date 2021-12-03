@@ -147,28 +147,25 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                        <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapsePeli" role="button" aria-controls="collapsePeli" >
+                            <img src="./img/camara.png" width="35px"class="d-inline-block align-top">
+                            Peliculas 
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseUser" role="button" aria-controls="collapseUser" aria-expanded="false" >
+                            <img src="./img/usuario.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                            Usuarios
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <a class="nav-link" data-bs-toggle="collapse"  data-bs-target="#collapseGroup" role="button" aria-controls="collapseGroup" aria-expanded="false" >
+                            <img src="./img/grupo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                            Grupos
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -179,16 +176,16 @@
     <div class="container-fluid">
         <div class="row">
             <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
-            <div class="col-sm-4 iulist">
+            <div id="collapsePeli" class="col-sm-4 iulist">
                 <div class="row">
                     <div class="col-auto">
-                        <h2>Peliculas </h2>
+                        <span><img id="imagenes-barra-nav" src="./img/camara.png" alt="peliculas"><h2 id="h2-nav-bar">Peliculas </h2></span>
                     </div>
                     <div class="col input-group mb-3">
                         <input type="search" class="form-control" id="movieSearch" placeholder="palabras del título" aria-describedby="searchMovieLabel">
                         <span class="input-group-text" id="searchMovieLabel">🔍</span>
                     </div>
-                    <div id="addMovie" class="formularioValidado">
+                    <div id="addMovie" class="formularioValidado" hidden>
                         <h3>Añadir película</h3>
                         <form class="row">
                             <div class="col-md-6">
@@ -220,11 +217,12 @@
                     </div>
                 </div>
                 <div class="accordion" id="movies">
+                
                 </div>
             </div>
 
-            <div class="col-sm-4 iulist">
-                <h2>Grupos</h2>
+            <div class="col-sm-4 iulist collapse collapsing" id="collapseGroup">
+                <span><img id="imagenes-barra-nav" src="./img/grupo.png" alt="Grupos"><h2 id="h2-nav-bar">Grupos</h2></span>
                 <div id="addGroup" class="formularioValidado">
                     <h3>Añadir grupo</h3>
                     <form class="row">
@@ -242,8 +240,8 @@
                 
             </div>
 
-            <div class="col-sm-4 iulist">
-                <h2>Usuarios</h2>
+            <div class="col-sm-4 iulist collapse collapsing" id="collapseUser">
+                <span><img id="imagenes-barra-nav" src="./img/usuario.png" alt="Usuario"><h2 id="h2-nav-bar">Usuarios</h2></span>
                 <div id="addUser" class="formularioValidado">
                     <h3>Añadir usuario</h3>
                     <form class="row">
