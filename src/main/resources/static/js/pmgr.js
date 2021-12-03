@@ -620,13 +620,14 @@ login("g1", "gX82i");
         }
     });
 }
+/*Agregar un nuevo usuario*/
 {
     const f = document.querySelector("#addUser form");
 
     f.querySelector("button[type='submit']").addEventListener('click', (e) =>{
         if(f.checkValidity()){
             e.preventDefault();
-            if(validarPass()){
+            if(validarPass()){ //antes de registrarlo comprueba que las contraseñas sean iguales
                 nuevoUsuario(f);
             }
         }
