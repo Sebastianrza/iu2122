@@ -172,7 +172,46 @@
             </div>
         </div>
     </nav>
+    <!-- modal para agregar pelicula-->
+    <div id="addMovie" class="formularioValidado modal fade" aria-labelledby="añadirPelicula" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Añadir película</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="f1" name="name" placeholder="Título" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="f2" name="imdb" placeholder="ID en IMDB (ej.: tt1234567)" required pattern="tt[0-9]+">
+                        </div>
 
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" name="director" placeholder="Director" required>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="actors" placeholder="Actores" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" name="year" placeholder="Año de estreno" min="1800" max="2022" required>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="number" class="form-control" name="minutes" placeholder="Duración en minutos" min="0" max="600" required>
+                        </div>
+
+                        <div class="col-12 botones">
+                            <button class="btn btn-primary" type="submit">Añadir</button>
+                            <button class="btn btn-secondary generar" type="button">Generar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
     <div class="container-fluid">
         <div class="row tab-content justify-content-center">
@@ -186,88 +225,84 @@
                         <input type="search" class="form-control" id="movieSearch" placeholder="palabras del título" aria-describedby="searchMovieLabel">
                         <span class="input-group-text" id="searchMovieLabel">🔍</span>
                     </div>
-                    <div id="addMovie" class="formularioValidado" hidden>
-                        <h3>Añadir película</h3>
-                        <form class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="f1" name="name" placeholder="Título" required>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="f2" name="imdb" placeholder="ID en IMDB (ej.: tt1234567)" required pattern="tt[0-9]+">
-                            </div>
-    
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" name="director" placeholder="Director" required>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="actors" placeholder="Actores" required>
-                            </div>
-    
-                            <div class="col-md-4">
-                                <input type="number" class="form-control" name="year" placeholder="Año de estreno" min="1800" max="2022" required>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="number" class="form-control" name="minutes" placeholder="Duración en minutos" min="0" max="600" required>
-                            </div>
-    
-                            <div class="col-12 botones">
-                                <button class="btn btn-primary" type="submit">Añadir</button>
-                                <button class="btn btn-secondary generar" type="button">Generar</button>
-                            </div>
-                        </form>
+                    <div>
+                        <button class="btn btn-light" href="#addMovie" data-bs-toggle="modal">➕ Agrega una Pelicula</button>
                     </div>
                 </div>
                 <div class="accordion" id="movies">
                 
                 </div>
             </div>
-
+<!--Modal para añadir un grupo-->
+            <div id="addGroup" class="formularioValidado modal fade" aria-labelledby="añadirGrupo" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Añadir Grupo</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="f1" name="name" placeholder="Nombre del nuevo grupo" required>
+                                </div>
+                                <div class="col-12 botones">
+                                    <button class="btn btn-primary" type="submit">Añadir</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-4 iulist tab-pane fade" id="collapseGroup" role="tabpanel" aria-labelledby="grupos-tab">
                 <span><img id="imagenes-barra-nav" src="./img/grupo.png" alt="Grupos"><h2 id="h2-nav-bar">Grupos</h2></span>
-                <div id="addGroup" class="formularioValidado">
-                    <h3>Añadir grupo</h3>
-                    <form class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="f1" name="name" placeholder="Nombre del nuevo grupo" required>
-                        </div>
-                        <div class="col-12 botones">
-                            <button class="btn btn-primary" type="submit">Añadir</button>
-                        </div>
-                    </form>
+                <div>
+                    <button class="btn btn-light" href="#addGroup" data-bs-toggle="modal">➕ Agrega un Grupo</button>
                 </div>
                 <div id="groups">
 
                 </div>
                 
             </div>
-
+<!--Modal para abrir añadir usuario-->
+            <div id="addUser" class="formularioValidado modal fade" aria-labelledby="añadirUsuario" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Añadir Usuario</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="row">
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Nombre del nuevo usuario" required>
+                                </div>
+                                <div class="col-md-8"> 
+                                    <input type="password" class="form-control" id="pass" name = "pass" placeholder="Introduce la contraseña" required>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="password" class="form-control" id="pass1" name = "pass1" placeholder="Introduce nuevamente la contraseña" required>
+                                </div>
+                                <div class="col-12 botones">
+                                    <button class="btn btn-primary" type="submit">Añadir</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-4 iulist tab-pane fade" role="tabpanel" aria-labelledby="user-tab" id="collapseUser">
                 <span><img id="imagenes-barra-nav" src="./img/usuario.png" alt="Usuario"><h2 id="h2-nav-bar">Usuarios</h2></span>
-                <div id="addUser" class="formularioValidado">
-                    <h3>Añadir usuario</h3>
-                    <form class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Nombre del nuevo usuario" required>
-                        </div>
-                        <div class="col-md-8"> 
-                            <input type="password" class="form-control" id="pass" name = "pass" placeholder="Introduce la contraseña" required>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="password" class="form-control" id="pass1" name = "pass1" placeholder="Introduce nuevamente la contraseña" required>
-                        </div>
-                        <div class="col-12 botones">
-                            <button class="btn btn-primary" type="submit">Añadir</button>
-                        </div>
-                    </form>
+                <div>
+                    <button class="btn btn-light" href="#addUser" data-bs-toggle="modal">➕ Agrega un Usuario</button>
                 </div>
                 <div id="users">
 
                 </div>
                 
             </div>
-        </div>
         <hr>
-        <div class="row">
+        <div class="row" hidden>
             <div class="col-sm-8 anuncio">
                 <h2>Ejemplo de formulario con validación y menú emergente</h2>
                 <form method="post" id="form-anuncio">
@@ -322,7 +357,7 @@ Hello, World!
     </div>
 
     <!-- Modal de selección de categorías (lanzado por un botón) -->
-    <div class="modal fade" id="modalSeleccionCategoria" tabindex="-1" role="dialog" aria-labelledby="tituloModalCategorias" aria-hidden="true">
+    <div class="modal fade" id="modalSeleccionCategoria" tabindex="-1" role="dialog" aria-labelledby="tituloModalCategorias" aria-hidden="true" hidden>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
