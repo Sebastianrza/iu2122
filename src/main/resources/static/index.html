@@ -140,30 +140,30 @@
     
 
     <!-- barra de navegación -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
-            <a class="navbar-brand" href="#">Piu</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
+        <a class="navbar-brand" href="index.html"> <strong style="font-size: 30px;">Piu</strong> </a>
+        <div class="container-fluid justify-content-center">
             <!-- menu hamburguesa si no cabe todo -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapsePeli" role="button" aria-controls="collapsePeli" >
+            <div id="navbarSupportedContent">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item active" role="presentation">
+                        <a class="nav-link" type="button" role="tab" data-bs-toggle="tab" data-bs-target="#collapseMovie" aria-selected="true" >
                             <img src="./img/camara.png" width="35px"class="d-inline-block align-top">
                             Peliculas 
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseUser" role="button" aria-controls="collapseUser" aria-expanded="false" >
+                        <a class="nav-link" type="button"  role="tab" data-bs-toggle="tab" data-bs-target="#collapseUser"  aria-selected="false" >
                             <img src="./img/usuario.png" width="30" height="30" class="d-inline-block align-top" alt="">
                             Usuarios
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse"  data-bs-target="#collapseGroup" role="button" aria-controls="collapseGroup" aria-expanded="false" >
+                        <a class="nav-link" type="button"  role="tab" data-bs-toggle="tab" data-bs-target="#collapseGroup"  aria-selected="false" >
                             <img src="./img/grupo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                             Grupos
                         </a>
@@ -175,9 +175,9 @@
 
     <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
     <div class="container-fluid">
-        <div class="row">
+        <div class="row tab-content">
             <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
-            <div id="collapsePeli" class="col-sm-4 iulist">
+            <div class="col-sm-4 iulist tab-pane fade show active" id="collapseMovie"role="tabpanel" aria-labelledby="peliculas-tab">
                 <div class="row">
                     <div class="col-auto">
                         <span><img id="imagenes-barra-nav" src="./img/camara.png" alt="peliculas"><h2 id="h2-nav-bar">Peliculas </h2></span>
@@ -222,7 +222,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4 iulist collapse collapsing" id="collapseGroup">
+            <div class="col-sm-4 iulist tab-pane fade" id="collapseGroup" role="tabpanel" aria-labelledby="grupos-tab">
                 <span><img id="imagenes-barra-nav" src="./img/grupo.png" alt="Grupos"><h2 id="h2-nav-bar">Grupos</h2></span>
                 <div id="addGroup" class="formularioValidado">
                     <h3>Añadir grupo</h3>
@@ -241,7 +241,7 @@
                 
             </div>
 
-            <div class="col-sm-4 iulist collapse collapsing" id="collapseUser">
+            <div class="col-sm-4 iulist tab-pane fade" role="tabpanel" aria-labelledby="user-tab" id="collapseUser">
                 <span><img id="imagenes-barra-nav" src="./img/usuario.png" alt="Usuario"><h2 id="h2-nav-bar">Usuarios</h2></span>
                 <div id="addUser" class="formularioValidado">
                     <h3>Añadir usuario</h3>
