@@ -4,11 +4,11 @@ Servidor y código de plantilla para una interfaz de gestión de valoraciones de
 
 # -Componentes Grupo 1-
 
-Ana Martínez Sabiote 
-Eladia Gómez Morales 
-Ignacio Urretavizcaya Tato 
-Javier Rodríguez-Avello Tapias 
-Sebastián Rafael Zambrano Azuaje 
+- Ana Martínez Sabiote 
+- Eladia Gómez Morales 
+- Ignacio Urretavizcaya Tato 
+- Javier Rodríguez-Avello Tapias 
+- Sebastián Rafael Zambrano Azuaje 
 
 ## Práctica
 
