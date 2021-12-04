@@ -23,7 +23,12 @@
     border: 1px solid lightgray;
     border-radius: 10px;
 }
-
+#imagenes-barra-nav{
+    width: 35px;
+}
+#h2-nav-bar{
+    display: inline;
+}
 
 /** comienzo CSS para controles de estrellas */
 

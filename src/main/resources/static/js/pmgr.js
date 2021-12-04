@@ -201,6 +201,26 @@ function createUserItem(user) {
  * Usa valores de un formulario para añadir una película
  * @param {Element} formulario para con los valores a subir
  */
+
+ function validarPass(){
+    if(document.getElementById("pass").value != document.getElementById("pass1").value){
+        alert("las contraseñas no coinciden");
+        return false;
+    }else{
+        return true;
+    }
+}
+function nuevoUsuario(formulario){
+    const user = new Pmgr.User(-1,
+        formulario.querySelector('input[name="username"]').value,
+        formulario.querySelector('input[name="pass"]').value,
+        "USER", 0, 0, 0);
+        Pmgr.addUser(user).then(() => {
+            formulario.reset() // limpia el formulario si todo OK
+            update();
+        });
+}
+
 function nuevaPelicula(formulario) {
     const movie = new Pmgr.Movie(-1,
         formulario.querySelector('input[name="imdb"]').value,
@@ -451,6 +471,18 @@ function update() {
         // botones de borrar grupos
         document.querySelectorAll(".iucontrol.group button.rm").forEach(b =>
             b.addEventListener('click', e => Pmgr.rmGroup(e.target.dataset.id).then(update)));
+        
+            // botón request grupo DA PROBLEMAS
+        document.querySelectorAll(".iucontrol.group button.request").forEach(b =>
+            b.addEventListener('click', e => {
+                const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
+                const request = new Request(-1,
+                    userId,
+                    id,
+                    Pmgr.RequestStatus.AWAITING_USER);
+                Pmgr.addRequest(request).then(update);
+            }));
+
         // botones de borrar usuarios
         document.querySelectorAll(".iucontrol.user button.rm").forEach(b =>
             b.addEventListener('click', e => Pmgr.rmUser(e.target.dataset.id).then(update)));
@@ -488,7 +520,7 @@ Pmgr.connect(serverUrl + "api/");
 // guarda el ID que usaste para hacer login en userId
 let userId = -1;
 const login = (username, password) => {
-    Pmgr.login(username, password) // <-- tu nombre de usuario y password aquí
+    Pmgr.login(username, password)
         .then(d => {
             console.log("login ok!", d);
             update(d);
@@ -575,7 +607,7 @@ login("g1", "gX82i");
 
 {
     /** 
-     * Asocia comportamientos al formulario de añadir películas 
+     * Asocia comportamientos al formulario de añadir grupos
      * en un bloque separado para que las constantes y variables no salgan de aquí, 
      * manteniendo limpio el espacio de nombres del fichero
      */
@@ -588,7 +620,19 @@ login("g1", "gX82i");
         }
     });
 }
+/*Agregar un nuevo usuario*/
+{
+    const f = document.querySelector("#addUser form");
 
+    f.querySelector("button[type='submit']").addEventListener('click', (e) =>{
+        if(f.checkValidity()){
+            e.preventDefault();
+            if(validarPass()){ //antes de registrarlo comprueba que las contraseñas sean iguales
+                nuevoUsuario(f);
+            }
+        }
+    })
+}
 /**
  * búsqueda básica de películas, por título
  */
