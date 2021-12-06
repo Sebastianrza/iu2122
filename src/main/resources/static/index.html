@@ -204,7 +204,7 @@
                         </div>
 
                         <div class="col-12 botones">
-                            <button class="btn btn-primary" type="submit">Añadir</button>
+                            <button class="btn btn-primary" type="submit" data-bs-dismiss="modal" aria-label="Close">Añadir</button>
                             <button class="btn btn-secondary generar" type="button">Generar</button>
                         </div>
                     </form>
@@ -222,7 +222,7 @@
                         <span><img id="imagenes-barra-nav" src="./img/camara.png" alt="peliculas"><h2 id="h2-nav-bar">Peliculas </h2></span>
                     </div>
                     <div class="col input-group mb-3">
-                        <input type="search" class="form-control" id="movieSearch" placeholder="palabras del título" aria-describedby="searchMovieLabel">
+                        <input type="search" class="form-control" id="movieSearch" placeholder="Busca por título de Pelicula" aria-describedby="searchMovieLabel">
                         <span class="input-group-text" id="searchMovieLabel">🔍</span>
                     </div>
                     <div>
@@ -247,25 +247,36 @@
                                     <input type="text" class="form-control" id="f1" name="name" placeholder="Nombre del nuevo grupo" required>
                                 </div>
                                 <div class="col-12 botones">
-                                    <button class="btn btn-primary" type="submit">Añadir</button>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" type="submit">Añadir</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+<!--cierra modal-->
             <div class="col-sm-4 iulist tab-pane fade" id="collapseGroup" role="tabpanel" aria-labelledby="grupos-tab">
-                <span><img id="imagenes-barra-nav" src="./img/grupo.png" alt="Grupos"><h2 id="h2-nav-bar">Grupos</h2></span>
+                <div class="row">
+                    <div class="col-auto">
+                        <span>
+                            <img id="imagenes-barra-nav" src="./img/grupo.png" alt="Grupos"><h2 id="h2-nav-bar">Grupos</h2>
+                        </span>
+                    </div>
+                    <!--<div class="col input-group mb-3">
+                        <input type="search" class="form-control" id="groupSearch" placeholder="Busca por nombre de Grupo" aria-describedby="searchGroupLabel">
+                        <span class="input-group-text" id="searchGroup">🔍</span>
+                    </div>-->
+                </div>
                 <div>
                     <button class="btn btn-light" href="#addGroup" data-bs-toggle="modal">➕ Añadir un Grupo</button>
                 </div>
                 <div id="groups">
 
                 </div>
-                
             </div>
+            
 <!--Modal para abrir añadir usuario-->
-            <div id="addUser" class="formularioValidado modal fade" aria-labelledby="añadirUsuario" aria-hidden="true">
+            <div id="addUser" class="formularioValidado modal fade" aria-labelledby="añadirUsuario" aria-hidden="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -284,7 +295,7 @@
                                     <input type="password" class="form-control" id="pass1" name = "pass1" placeholder="Introduce nuevamente la contraseña" required>
                                 </div>
                                 <div class="col-12 botones">
-                                    <button class="btn btn-primary" type="submit">Añadir</button>
+                                    <button class="btn btn-primary" type="submit" data-bs-dismiss="modal" aria-label="Close">Añadir</button>
                                 </div>
                             </form>
                         </div>
@@ -321,7 +332,17 @@
 
 
             <div class="col-sm-4 iulist tab-pane fade" role="tabpanel" aria-labelledby="user-tab" id="collapseUser">
-                <span><img id="imagenes-barra-nav" src="./img/usuario.png" alt="Usuario"><h2 id="h2-nav-bar">Usuarios</h2></span>
+                <div class="row">
+                    <div class="col-auto">
+                        <span>
+                            <img id="imagenes-barra-nav" src="./img/usuario.png" alt="Usuario"><h2 id="h2-nav-bar">Usuarios</h2>
+                        </span>
+                    </div>
+                   <!-- <div class="col input-group mb-3">
+                        <input type="search" class="form-control" id="userSearch" placeholder="Busca por nombre de Usuario" aria-describedby="searchUserLabel">
+                        <span class="input-group-text" id="searchUser">🔍</span>
+                    </div>-->
+                </div>
                 <div>
                     <button class="btn btn-light" href="#addUser" data-bs-toggle="modal">➕ Añadir un Usuario</button>
                 </div>
