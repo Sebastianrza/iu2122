@@ -476,10 +476,10 @@ function update() {
         document.querySelectorAll(".iucontrol.group button.request").forEach(b =>
             b.addEventListener('click', e => {
                 const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
-                const request = new Request(-1,
+                const request = new Pmgr.Request(-1,
                     userId,
                     id,
-                    Pmgr.RequestStatus.AWAITING_USER);
+                    "awaiting_group");
                 Pmgr.addRequest(request).then(update);
             }));
 
