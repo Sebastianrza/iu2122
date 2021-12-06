@@ -2,7 +2,7 @@
 
 Servidor y código de plantilla para una interfaz de gestión de valoraciones de películas, a usar para las prácticas de la asignatura *Interfaces de Usuario* de los grados de Informática de la Universidad Complutense, en su edición 2021-22.
 
-# -Componentes Grupo 1-
+## Componentes Grupo 1
 
 - Ana Martínez Sabiote 
 - Eladia Gómez Morales 
