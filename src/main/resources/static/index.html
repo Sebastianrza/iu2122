@@ -291,6 +291,35 @@
                     </div>
                 </div>
             </div>
+<!--Modal para abrir modificar usuario-->
+            <div id="userEdit" class="formularioValidado modal fade" aria-labelledby="modificaUsuario" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Editando Usuario</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="row">
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Nuevo nombre del usuario" required>
+                                </div>
+                                <div class="col-md-8"> 
+                                    <input type="password" class="form-control" id="pass" name = "pass" placeholder="Introduce nueva contraseña" required>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="password" class="form-control" id="pass1" name = "pass1" placeholder="Introduce nuevamente la contraseña" required>
+                                </div>
+                                <div class="col-12 botones">
+                                    <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="col-sm-4 iulist tab-pane fade" role="tabpanel" aria-labelledby="user-tab" id="collapseUser">
                 <span><img id="imagenes-barra-nav" src="./img/usuario.png" alt="Usuario"><h2 id="h2-nav-bar">Usuarios</h2></span>
                 <div>

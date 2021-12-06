@@ -256,7 +256,7 @@ function modificaPelicula(formulario) {
 }
 
 /**
- * Usa valores de un formulario para modificar una película
+ * Usa valores de un formulario para modificar una grupo
  * @param {Element} formulario para con los valores a subir
  */
  function modificaGrupo(formulario) {
@@ -264,6 +264,23 @@ function modificaPelicula(formulario) {
         formulario.querySelector('input[name="id"]').value,
         formulario.querySelector('input[name="name"]').value)
     Pmgr.setGroup(group).then(() => {
+        formulario.reset() // limpia el formulario si todo OK
+        modalEditGroup.hide(); // oculta el formulario
+        update();
+    }).catch(e => console.log(e));
+}
+
+/**
+ * Usa valores de un formulario para modificar una usuario
+ * @param {Element} formulario para con los valores a subir
+ */
+ function modificaUsuario(formulario) {
+    const user = new Pmgr.User(
+        userId,
+        formulario.querySelector('input[name="username"]').value,
+        formulario.querySelector('input[name="pass"]').value,
+        "USER", 0, 0, 0);
+    Pmgr.setUser(user).then(() => {
         formulario.reset() // limpia el formulario si todo OK
         modalEditGroup.hide(); // oculta el formulario
         update();
@@ -582,7 +599,22 @@ login("g1", "gX82i");
             f.querySelector("button[type=submit]").click(); // fuerza validacion local
         }
     });
-} {
+}{ 
+  /**
+     * formulario para modificar usuarios
+     */
+   const f = document.querySelector("#userEditForm");
+   // botón de enviar
+   document.querySelector("#userEdit button.edit").addEventListener('click', e => {
+       console.log("enviando formulario!");
+       if (f.checkValidity()) {
+           modificaUsuario(f); // modifica el grupo según los campos previamente validados
+       } else {
+           e.preventDefault();
+           f.querySelector("button[type=submit]").click(); // fuerza validacion local
+       }
+   });  
+}{
     /**
      * formulario para evaluar películas; usa el mismo modal para añadir y para editar
      */
@@ -629,6 +661,20 @@ login("g1", "gX82i");
             e.preventDefault();
             if(validarPass()){ //antes de registrarlo comprueba que las contraseñas sean iguales
                 nuevoUsuario(f);
+            }
+        }
+    })
+}
+
+/*Editar un usuario*/
+{
+    const f = document.querySelector("#userEdit form");
+
+    f.querySelector("button[type='submit']").addEventListener('click', (e) =>{
+        if(f.checkValidity()){
+            e.preventDefault();
+            if(validarPass()){ //antes de registrarlo comprueba que las contraseñas sean iguales
+                modificaUsuario(f);
             }
         }
     })
