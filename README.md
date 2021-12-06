@@ -2,13 +2,33 @@
 
 Servidor y código de plantilla para una interfaz de gestión de valoraciones de películas, a usar para las prácticas de la asignatura *Interfaces de Usuario* de los grados de Informática de la Universidad Complutense, en su edición 2021-22.
 
-# -Componentes Grupo 1-
+## Componentes Grupo 1
 
 - Ana Martínez Sabiote 
 - Eladia Gómez Morales 
 - Ignacio Urretavizcaya Tato 
 - Javier Rodríguez-Avello Tapias 
 - Sebastián Rafael Zambrano Azuaje 
+
+
+## Cambios realizados
+
+### Funcionalidades que faltan/por terminar
+
+En el apartado de las peticiones queda pendiente ajustar la funcionalidad de crear una nueva solicitud, ya que en el estado actual se permite a un usuario solicitar unirse a un grupo en el que ya está presente. Por otro lado, también es necesario implementar la posibilidad de manejar las solicitudes, tanto para aceptar como para rechazar.
+
+Con respecto a las valoraciones, aunque ya está implementada la posibilidad de modificarlas, no se puede cambiar únicamente el texto asociado a la valoración. Además queda pendiente añadir opción de eliminar una valoración.
+
+Por último, a nivel de usuario se está trabajando en la funcionalidad de modificar, encontrando especcial dificulat en conseguir que el botón dedicado a esa acción funcione correctamente.
+
+
+### Cambios con respecto a la practica 5 (prototipo)
+
+En el prototipo solo había dos pestañas entre las que interactuar, siendo estas las de películas y grupos, mientras que en esta práctica hemos añadido una tercera que hace referencia a los usuarios dados de alta en el sistema.
+
+En el apartado de películas, primeramente a la hora de buscar una película solo se busca a través del título, cuando en el prototipo se hacía con bastantes filtros que no se van a implementar en esta versión. Por otra parte, en el prototipo las películas aparecían en una lista con múltiples filas y columnas, mientras que en la implementación se trata de tan solo una columna. Además, en la práctica 5 no estaba la posibilidad desde la lista de películas de modificar, valorar o eliminar película, cosa que sí aparece en esta prácrica.
+
+Por último, en la pestaña de grupos, se han unificado las posibilidades que ofrecíamos en el prototipo en la pantalla principal de grupos(solicitar) y gestionar grupos (modificar y eliminar) en una lista donde aparecen los tres botones desde el principio. Las solicitudes pendientes únicamente eran accesibles pulsando el botón de solicitudes en la pestaña de gestionar grupos mientras que ahora aparecen de diferente color según su estado en la lista principal de grupos.
 
 ## Práctica
 
@@ -37,4 +57,6 @@ La aplicación de servidor funciona con Spring Boot, y puedes lanzarla en local 
 - Contraseñas y contenido inicial de la BD: [import.sql](https://github.com/manuel-freire/iu2122/blob/main/src/main/resources/import.sql)
 
 *El profesor proporcionará un servidor (con configuración cambiada con respecto a la anterior) que permanecerá encendido hasta el fin de las prácticas de la asignatura. Lanzar o no otro servidor en local, o jugar con el codigo, es completamente opcional. Ver [licencia](https://github.com/manuel-freire/iu2122/blob/main/LICENSE)*
+
+
 
