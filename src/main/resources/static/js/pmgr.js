@@ -276,13 +276,13 @@ function modificaPelicula(formulario) {
  */
  function modificaUsuario(formulario) {
     const user = new Pmgr.User(
-        userId,
+        formulario.querySelector('input[name="id"]').value,
         formulario.querySelector('input[name="username"]').value,
         formulario.querySelector('input[name="pass"]').value,
         "USER", 0, 0, 0);
     Pmgr.setUser(user).then(() => {
         formulario.reset() // limpia el formulario si todo OK
-        modalEditGroup.hide(); // oculta el formulario
+        modalEditUser.hide(); // oculta el formulario
         update();
     }).catch(e => console.log(e));
 }
@@ -453,6 +453,21 @@ function update() {
 
                 modalEditGroup.show(); // ya podemos mostrar el formulario
             }));
+
+        //boton de editar usuario
+        document.querySelectorAll(".iucontrol.user button.edit").forEach(b =>
+            b.addEventListener('click', e => {
+                const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
+                const user = Pmgr.resolve(id);
+                const formulario = document.querySelector("#userEditForm");
+                for (let [k, v] of Object.entries(user)) {
+                    // rellenamos el formulario con los valores actuales
+                    const input = formulario.querySelector(`input[name="${k}"]`);
+                    if (input) input.value = v;
+                }
+
+                modalEditUser.show(); // ya podemos mostrar el formulario
+            }));
         // botones de evaluar películas
         document.querySelectorAll(".iucontrol.movie button.rate").forEach(b =>
             b.addEventListener('click', e => {
@@ -528,10 +543,11 @@ function update() {
 const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'));
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
 const modalEditGroup = new bootstrap.Modal(document.querySelector('#groupEdit'));
+const modalEditUser  = new bootstrap.Modal(document.querySelector('#userEdit'));
 
 // si lanzas un servidor en local, usa http://localhost:8080/
 const serverUrl = "http://gin.fdi.ucm.es/iu/";
-
+//const serverUrl = "http://localhost:8080/";
 Pmgr.connect(serverUrl + "api/");
 
 // guarda el ID que usaste para hacer login en userId
@@ -551,7 +567,8 @@ const login = (username, password) => {
 }
 
 login("g1", "gX82i");
-
+//login("g1", "sebas");
+//login("sebas","1234");
 {
     /** 
      * Asocia comportamientos al formulario de añadir películas 
@@ -599,22 +616,29 @@ login("g1", "gX82i");
             f.querySelector("button[type=submit]").click(); // fuerza validacion local
         }
     });
-}{ 
-  /**
-     * formulario para modificar usuarios
+}
+
+{
+    /**
+     * formulario para modificar usuario
      */
-   const f = document.querySelector("#userEditForm");
-   // botón de enviar
-   document.querySelector("#userEdit button.edit").addEventListener('click', e => {
-       console.log("enviando formulario!");
-       if (f.checkValidity()) {
-           modificaUsuario(f); // modifica el grupo según los campos previamente validados
-       } else {
-           e.preventDefault();
-           f.querySelector("button[type=submit]").click(); // fuerza validacion local
-       }
-   });  
-}{
+    const f = document.querySelector("#userEditForm");
+    // botón de enviar
+    document.querySelector("#userEdit button.edit").addEventListener('click', e => {
+        console.log("enviando formulario!");
+        if (f.checkValidity()) {
+            if(validarPass()){
+                modificaUsuario(f);
+            }
+        } else {
+            e.preventDefault();
+            f.querySelector("button[type=submit]").click(); // fuerza validacion local
+        }
+    });
+}
+
+
+{
     /**
      * formulario para evaluar películas; usa el mismo modal para añadir y para editar
      */
@@ -697,6 +721,7 @@ document.querySelector("#movieSearch").addEventListener("input", e => {
 // cosas que exponemos para poder usarlas desde la consola
 window.modalEditMovie = modalEditMovie;
 window.modalRateMovie = modalRateMovie;
+window.modalEditUser = modalEditUser;
 window.update = update;
 window.login = login;
 window.userId = userId;
