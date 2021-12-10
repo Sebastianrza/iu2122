@@ -94,6 +94,7 @@ function createMovieItem(movie) {
         </span>
         `
     ).join("");
+   
     var hid = isAdmin ? "hidden" : "";
     return `
     <div class="card" data-id="${movie.id}">
@@ -197,6 +198,18 @@ function createUserItem(user) {
     </div>
     </div>
 `;
+}
+function createButton(){
+    var hid = isAdmin ? "hidden" : "";
+    return `
+    <button class="btn btn-light ${hid}" href="#addMovie" data-bs-toggle="modal">➕ Añadir una Pelicula</button>
+    `;
+}
+function createButtonUser(){
+    var hid = isAdmin ? "hidden" : "";
+    return `
+    <button class="btn btn-light ${hid}" href="#addUser" data-bs-toggle="modal">➕ Añadir un Usuario</button>
+    `;
 }
 
 /**
@@ -419,12 +432,15 @@ function update() {
         empty("#movies");
         empty("#groups");
         empty("#users");
+        empty("#botonPelicula");
+        empty("#botonUsuario");
 
         // y los volvemos a rellenar con su nuevo contenido
         Pmgr.state.movies.forEach(o => appendTo("#movies", createMovieItem(o)));
         Pmgr.state.groups.forEach(o => appendTo("#groups", createGroupItem(o)));
         Pmgr.state.users.forEach(o => appendTo("#users", createUserItem(o)));
-
+        appendTo("#botonPelicula", createButton());        
+        appendTo("#botonUsuario", createButtonUser());
         // y añadimos manejadores para los eventos de los elementos recién creados
         // botones de borrar películas
         document.querySelectorAll(".iucontrol.movie button.rm").forEach(b =>
@@ -559,7 +575,7 @@ Pmgr.connect(serverUrl + "api/");
 
 // guarda el ID que usaste para hacer login en userId
 let userId = -1;
-var isAdmin  = "";
+let isAdmin  = "";
 const login = (username, password) => {
     Pmgr.login(username, password)
         .then(d => {
