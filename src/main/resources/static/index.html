@@ -120,6 +120,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div id="msg"></div>
+                    <div id="error" class="alert alert-danger ocultar" role="alert">
+                        Las contraseñas no coinciden, inténtalo nuevamente!!!
+                    </div>
+                    <div id="ok" class="alert alert-success ocultar" role="alert">
+                        Enviando formulario...!
+                    </div>
                     <form class="row" id="userEditForm">
                         <input type="hidden" name="id">
                         <div class="col-md-8">
@@ -164,8 +171,33 @@
             </div>
         </div>
     </div>
-    
+    <!--Modal de inicio de sesión-->
+    <div class="modal fade" id="userSession" tabindex="-1" aria-labelledby="groupEditLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userSessionLabel">Iniciando Sesión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row" id="userSessionForm">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Nombre del usuario" required>
+                        </div>
+                        <div class="col-md-8"> 
+                            <input type="password" class="form-control" id="pass" name = "pass" placeholder="Introduce la contraseña" required>
+                        </div>
 
+                        <button style="display: none" type="submit">Invisible, sólo para validación</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary edit">Iniciar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
@@ -197,6 +229,9 @@
                     </li>
                 </ul>
             </div>
+        </div>
+        <div id ="login-nav">
+            <a type="button" href="#userSession"> Login </a>
         </div>
     </nav>
     <!-- modal para agregar pelicula-->
@@ -309,6 +344,13 @@
                         <div class="modal-header">
                             <h3 class="modal-title">Añadir Usuario</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div id="msg"></div>
+                        <div id="error" class="alert alert-danger ocultar" role="alert">
+                            Las contraseñas no coinciden, inténtalo nuevamente!!!
+                        </div>
+                        <div id="ok" class="alert alert-success ocultar" role="alert">
+                            Enviando formulario...!
                         </div>
                         <div class="modal-body">
                             <form class="row">

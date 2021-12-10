@@ -94,7 +94,7 @@ function createMovieItem(movie) {
         </span>
         `
     ).join("");
-
+    var hid = isAdmin ? "hidden" : "";
     return `
     <div class="card" data-id="${movie.id}">
     <div class="card-header"">
@@ -117,8 +117,8 @@ function createMovieItem(movie) {
                         ${ratings}
                     </div>        
                     <div class="iucontrol movie">
-                        <button class="rm" data-id="${movie.id}">🗑️</button>
-                        <button class="edit" data-id="${movie.id}">✏️</button>
+                        <button class="rm ${hid}" data-id="${movie.id}">🗑️</button>
+                        <button class="edit ${hid}" data-id="${movie.id}">✏️</button>
                         <button class="rate" data-id="${movie.id}">⭐</button>
                     </div>  
                 </div>
@@ -140,7 +140,7 @@ function createGroupItem(group) {
             ${Pmgr.resolve(r.user).username}</span>`
 
     ).join(" ");
-
+    var hid = isAdmin ? "hidden" : "";
     return `
     <div class="card">
     <div class="card-header">
@@ -155,7 +155,7 @@ function createGroupItem(group) {
             ${allPending}
         </div>
         <div class="row-sm-1 iucontrol group">
-            <button class="rm" data-id="${group.id}">🗑️</button>
+            <button class="rm ${hid}" data-id="${group.id}">🗑️</button>
             <button class="edit" data-id="${group.id}">✏️</button>
             <button class="request" data-id="${group.id}">💌</button>
         </div>
@@ -164,6 +164,7 @@ function createGroupItem(group) {
     </div>
 `;
 }
+
 
 function createUserItem(user) {
     let allGroups = user.groups.map((id) =>
@@ -175,7 +176,8 @@ function createUserItem(user) {
             title="Esperando aceptación de ${waitingForGroup(r) ? "grupo" : "usuario"}">
             ${Pmgr.resolve(r.group).name}</span>`
     ).join(" ");
-
+    
+    var hid = isAdmin ? "hidden" : "";
     return `
     <div class="card">
     <div class="card-header">
@@ -189,8 +191,8 @@ function createUserItem(user) {
             ${allPending}
         <div>
         <div class="row-sm-1 iucontrol user">
-            <button class="rm" data-id="${user.id}">🗑️</button>
-            <button class="edit" data-id="${user.id}">✏️</button>
+            <button class="rm ${hid}" data-id="${user.id}">🗑️</button>
+            <button class="edit ${hid}" data-id="${user.id}">✏️</button>
         </div>        
     </div>
     </div>
@@ -204,9 +206,14 @@ function createUserItem(user) {
 
  function validarPass(){
     if(document.getElementById("pass").value != document.getElementById("pass1").value){
-        alert("las contraseñas no coinciden");
+       // document.getElementById("error").classList.add("mostrar");
+        alert("Contraseñas incorrecta");
         return false;
     }else{
+        //alert("Contraseña correcta, Procesando formulario...!")
+        //document.getElementById("error").classList.remove("mostrar");
+        //document.getElementById("ok").classList.remove("ocultar");
+        
         return true;
     }
 }
@@ -552,6 +559,7 @@ Pmgr.connect(serverUrl + "api/");
 
 // guarda el ID que usaste para hacer login en userId
 let userId = -1;
+var isAdmin  = "";
 const login = (username, password) => {
     Pmgr.login(username, password)
         .then(d => {
@@ -559,15 +567,17 @@ const login = (username, password) => {
             update(d);
             userId = Pmgr.state.users.find(u =>
                 u.username == username).id;
+            isAdmin = Pmgr.state.users.find(u => u.username == username).role == "ADMIN,USER";
+            
         })
         .catch(e => {
             console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
             console.log(`el servidor dice: "${e.text}"`);
         });
 }
-
+//login("Victo_20", "vito1");
 login("g1", "gX82i");
-//login("g1", "sebas");
+//login("g01", "sebas");
 //login("sebas","1234");
 {
     /** 

@@ -3,14 +3,25 @@
 .iuthumb {
     height: 75px;
 }
-
+#login-nav{
+    display: flex;
+    padding: 30px;
+}
+.hidden{
+    display: none;
+}
 .formularioValidado {
     
     border-radius: 20px;
     padding: 10px;
     margin: 10px;
 }
-
+.ocultar{
+    display:none;
+}
+.mostrar{
+    display:block;
+}
 .formularioValidado input {
     margin-top: 4px;
 }
