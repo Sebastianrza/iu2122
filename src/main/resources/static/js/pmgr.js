@@ -95,7 +95,7 @@ function createMovieItem(movie) {
         `
     ).join("");
    
-    var hid = isAdmin ? "hidden" : "";
+    var hid = isAdmin ? "":"hidden" ;
     return `
     <div class="card" data-id="${movie.id}">
     <div class="card-header"">
@@ -141,7 +141,7 @@ function createGroupItem(group) {
             ${Pmgr.resolve(r.user).username}</span>`
 
     ).join(" ");
-    var hid = isAdmin ? "hidden" : "";
+    var hid = isAdmin ? " " : "hidden";
     return `
     <div class="card">
     <div class="card-header">
@@ -178,7 +178,7 @@ function createUserItem(user) {
             ${Pmgr.resolve(r.group).name}</span>`
     ).join(" ");
     
-    var hid = isAdmin ? "hidden" : "";
+    var hid = isAdmin ? "":"hidden" ;
     return `
     <div class="card">
     <div class="card-header">
@@ -200,13 +200,13 @@ function createUserItem(user) {
 `;
 }
 function createButton(){
-    var hid = isAdmin ? "hidden" : "";
+    var hid = isAdmin ? "":"hidden" ;
     return `
     <button class="btn btn-light ${hid}" href="#addMovie" data-bs-toggle="modal">➕ Añadir una Pelicula</button>
     `;
 }
 function createButtonUser(){
-    var hid = isAdmin ? "hidden" : "";
+    var hid = isAdmin ? "":"hidden" ;
     return `
     <button class="btn btn-light ${hid}" href="#addUser" data-bs-toggle="modal">➕ Añadir un Usuario</button>
     `;
@@ -580,11 +580,10 @@ const login = (username, password) => {
     Pmgr.login(username, password)
         .then(d => {
             console.log("login ok!", d);
-            update(d);
             userId = Pmgr.state.users.find(u =>
                 u.username == username).id;
             isAdmin = Pmgr.state.users.find(u => u.username == username).role == "ADMIN,USER";
-            
+            update(d);
         })
         .catch(e => {
             console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
@@ -753,7 +752,7 @@ window.login = login;
 window.userId = userId;
 window.Pmgr = Pmgr;
 window.stars = stars;
-
+window.whoami = () => ({ userId, isAdmin });
 // ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
 // ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)
 // Pmgr.populate();
