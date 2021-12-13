@@ -198,6 +198,21 @@ function createUserItem(user) {
     </div>
 `;
 }
+function createLogin(){
+    let html = " ";
+    if(isAdmin){
+        html = `
+            Admin(${uName}) 
+            <a type="button" href="#" onclick="window.location.reload(true);"">  logout </a>
+        `;
+    }else{    
+        html = `  
+            Usuario ${uName}
+            <a type="button" href="#" onclick="window.location.reload(true);""> logout </a>
+        `;
+    }
+    return html;
+}
 function createButton(){
     var hid = isAdmin ? "":"hidden" ;
     return `
@@ -433,13 +448,14 @@ function update() {
         empty("#users");
         empty("#botonPelicula");
         empty("#botonUsuario");
-
+        empty("#login-nav")
         // y los volvemos a rellenar con su nuevo contenido
         Pmgr.state.movies.forEach(o => appendTo("#movies", createMovieItem(o)));
         Pmgr.state.groups.forEach(o => appendTo("#groups", createGroupItem(o)));
         Pmgr.state.users.forEach(o => appendTo("#users", createUserItem(o)));
         appendTo("#botonPelicula", createButton());        
         appendTo("#botonUsuario", createButtonUser());
+        appendTo("#login-nav", createLogin());
         // y añadimos manejadores para los eventos de los elementos recién creados
         // botones de borrar películas
         document.querySelectorAll(".iucontrol.movie button.rm").forEach(b =>
@@ -529,18 +545,21 @@ function update() {
             // botón request grupo DA PROBLEMAS
         document.querySelectorAll(".iucontrol.group button.request").forEach(b =>
             b.addEventListener('click', e => {
+
                 const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
                 const request = new Pmgr.Request(-1,
-                    userId,
-                    id,
-                    "awaiting_group");
+                userId,
+                id,
+                "awaiting_group");
                 Pmgr.addRequest(request).then(update);
+                
             }));
 
         // botones de borrar usuarios
         document.querySelectorAll(".iucontrol.user button.rm").forEach(b =>
             b.addEventListener('click', e => Pmgr.rmUser(e.target.dataset.id).then(update)));
-
+        //borrar ratings
+     //   document.querySelectorAll("").forEach(b => b.addEventListener('click', e => Pmgr.rmRating(e.target.dataset.id).then(update)));
 
     } catch (e) {
         console.log('Error actualizando', e);
@@ -575,12 +594,16 @@ Pmgr.connect(serverUrl + "api/");
 // guarda el ID que usaste para hacer login en userId
 let userId = -1;
 let isAdmin  = "";
-/*const login = (username, password) => {
+let uName ="";
+const login = (username, password) => {
     Pmgr.login(username, password)
         .then(d => {
             console.log("login ok!", d);
             userId = Pmgr.state.users.find(u =>
-                u.username == username).id;
+                u.username == username).id; //buscar id
+
+            uName = username//buscar username
+
             isAdmin = Pmgr.state.users.find(u => u.username == username).role == "ADMIN,USER";
             update(d);
         })
@@ -588,25 +611,30 @@ let isAdmin  = "";
             console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
             console.log(`el servidor dice: "${e.text}"`);
         });
-}*/
+}
 //login("Victo_20", "vito1");
 //login("g1", "gX82i");
 //login("g01", "sebas");
-//login("sebas","1234");
+//login("sebas","sebas");
 function log(formulario){
     let user = formulario.querySelector('input[name="username"]').value;
     let pass = formulario.querySelector('input[name="pass"]').value;
     
     Pmgr.login(user, pass).then(d => {
         console.log("login ok!", d);
-        userId = Pmgr.state.users.find( u => u.username == user).id;
-        isAdmin = Pmgr.state.users.find( u => u.username == user).role == "ADMIN,USER";
+        userId = Pmgr.state.users.find( u => u.username == user).id; //busca el usuario
+
+        uName = user; // guardamos el nombre de usuario
+            
+        isAdmin = Pmgr.state.users.find( u => u.username == user).role == "ADMIN,USER"; // busca el rol del usuario
+
         formulario.reset();
         update(d);
     })
     .catch(e => {
         console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
         console.log(`el servidor dice: "${e.text}"`);
+        
     });
 }
 {
@@ -774,11 +802,11 @@ window.modalEditMovie = modalEditMovie;
 window.modalRateMovie = modalRateMovie;
 window.modalEditUser = modalEditUser;
 window.update = update;
-//window.login = login;
+window.login = login;
 window.userId = userId;
 window.Pmgr = Pmgr;
 window.stars = stars;
-window.whoami = () => ({ userId, isAdmin });
+window.whoami = () => ({ userId, uName,isAdmin });
 // ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
 // ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)
 // Pmgr.populate();
