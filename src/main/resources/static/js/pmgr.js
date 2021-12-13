@@ -94,7 +94,6 @@ function createMovieItem(movie) {
         </span>
         `
     ).join("");
-   
     var hid = isAdmin ? "":"hidden" ;
     return `
     <div class="card" data-id="${movie.id}">
@@ -127,7 +126,7 @@ function createMovieItem(movie) {
         </div>
     </div>
     </div>
- `;
+`;
 }
 
 function createGroupItem(group) {
@@ -217,7 +216,7 @@ function createButtonUser(){
  * @param {Element} formulario para con los valores a subir
  */
 
- function validarPass(){
+function validarPass(){
     if(document.getElementById("pass").value != document.getElementById("pass1").value){
        // document.getElementById("error").classList.add("mostrar");
         alert("Contraseñas incorrecta");
@@ -576,7 +575,7 @@ Pmgr.connect(serverUrl + "api/");
 // guarda el ID que usaste para hacer login en userId
 let userId = -1;
 let isAdmin  = "";
-const login = (username, password) => {
+/*const login = (username, password) => {
     Pmgr.login(username, password)
         .then(d => {
             console.log("login ok!", d);
@@ -589,11 +588,38 @@ const login = (username, password) => {
             console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
             console.log(`el servidor dice: "${e.text}"`);
         });
-}
+}*/
 //login("Victo_20", "vito1");
-login("g1", "gX82i");
+//login("g1", "gX82i");
 //login("g01", "sebas");
 //login("sebas","1234");
+function log(formulario){
+    let user = formulario.querySelector('input[name="username"]').value;
+    let pass = formulario.querySelector('input[name="pass"]').value;
+    
+    Pmgr.login(user, pass).then(d => {
+        console.log("login ok!", d);
+        userId = Pmgr.state.users.find( u => u.username == user).id;
+        isAdmin = Pmgr.state.users.find( u => u.username == user).role == "ADMIN,USER";
+        formulario.reset();
+        update(d);
+    })
+    .catch(e => {
+        console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
+        console.log(`el servidor dice: "${e.text}"`);
+    });
+}
+{
+    const f = document.querySelector("#userSession form");
+
+    f.querySelector("button[type='submit']").addEventListener('click', (e) => {
+        console.log("enviando inicio de sesión")
+        if(f.checkValidity()){
+            e.preventDefault();
+            log(f);
+        }
+    });
+}
 {
     /** 
      * Asocia comportamientos al formulario de añadir películas 
@@ -748,7 +774,7 @@ window.modalEditMovie = modalEditMovie;
 window.modalRateMovie = modalRateMovie;
 window.modalEditUser = modalEditUser;
 window.update = update;
-window.login = login;
+//window.login = login;
 window.userId = userId;
 window.Pmgr = Pmgr;
 window.stars = stars;
