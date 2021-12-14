@@ -203,15 +203,23 @@ function createLogin(){
     if(isAdmin){
         html = `
             Admin(${uName}) 
-            <a type="button" href="#" onclick="window.location.reload(true);"">  logout </a>
+            <a type="button" href="#" onclick="window.location.reload(true);">logout</a>
         `;
     }else{    
         html = `  
-            Usuario ${uName}
-            <a type="button" href="#" onclick="window.location.reload(true);""> logout </a>
-        `;
+            ${uName}
+            <a type="button" href="#" onclick="window.location.reload(true);">logout </a>
+            `;
     }
     return html;
+}
+function createButtonGroup(){
+    var hid = isAdmin ? "":"hidden" ;
+    return `
+
+    <button class="btn btn-light" href="#addGroup" data-bs-toggle="modal">➕ Añadir un Grupo</button>
+
+    `;
 }
 function createButton(){
     var hid = isAdmin ? "":"hidden" ;
@@ -448,6 +456,7 @@ function update() {
         empty("#users");
         empty("#botonPelicula");
         empty("#botonUsuario");
+        empty("#botonGrupo")
         empty("#login-nav")
         // y los volvemos a rellenar con su nuevo contenido
         Pmgr.state.movies.forEach(o => appendTo("#movies", createMovieItem(o)));
@@ -455,6 +464,7 @@ function update() {
         Pmgr.state.users.forEach(o => appendTo("#users", createUserItem(o)));
         appendTo("#botonPelicula", createButton());        
         appendTo("#botonUsuario", createButtonUser());
+        appendTo('#botonGrupo', createButtonGroup());
         appendTo("#login-nav", createLogin());
         // y añadimos manejadores para los eventos de los elementos recién creados
         // botones de borrar películas
