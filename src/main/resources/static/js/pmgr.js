@@ -391,7 +391,12 @@ function generaPelicula(formulario) {
         update();
     }).catch(e => console.log(e));;
 }
-
+function botonBusqueda(){
+    return `
+    <input type="search" class="form-control" id="movieSearch" placeholder="Busca por título de Pelicula" aria-describedby="searchMovieLabel">
+    <span class="input-group-text" id="searchMovieLabel">🔍</span>
+    `;
+}
 
 /**
  * En un div que contenga un campo de texto de búsqueda
@@ -456,8 +461,10 @@ function update() {
         empty("#users");
         empty("#botonPelicula");
         empty("#botonUsuario");
-        empty("#botonGrupo")
-        empty("#login-nav")
+        empty("#botonGrupo");
+        empty("#login-nav");
+        empty("#mensajebienvenida");
+        empty("#barraBusqueda");
         // y los volvemos a rellenar con su nuevo contenido
         Pmgr.state.movies.forEach(o => appendTo("#movies", createMovieItem(o)));
         Pmgr.state.groups.forEach(o => appendTo("#groups", createGroupItem(o)));
@@ -466,6 +473,7 @@ function update() {
         appendTo("#botonUsuario", createButtonUser());
         appendTo('#botonGrupo', createButtonGroup());
         appendTo("#login-nav", createLogin());
+        appendTo("#barraBusqueda", botonBusqueda());
         // y añadimos manejadores para los eventos de los elementos recién creados
         // botones de borrar películas
         document.querySelectorAll(".iucontrol.movie button.rm").forEach(b =>
@@ -613,7 +621,7 @@ const login = (username, password) => {
                 u.username == username).id; //buscar id
 
             uName = username//buscar username
-
+            session = true;
             isAdmin = Pmgr.state.users.find(u => u.username == username).role == "ADMIN,USER";
             update(d);
         })
@@ -626,6 +634,7 @@ const login = (username, password) => {
 //login("g1", "gX82i");
 //login("g01", "sebas");
 //login("sebas","sebas");
+let session="";
 function log(formulario){
     let user = formulario.querySelector('input[name="username"]').value;
     let pass = formulario.querySelector('input[name="pass"]').value;
@@ -637,7 +646,7 @@ function log(formulario){
         uName = user; // guardamos el nombre de usuario
             
         isAdmin = Pmgr.state.users.find( u => u.username == user).role == "ADMIN,USER"; // busca el rol del usuario
-
+        session = true;
         formulario.reset();
         update(d);
     })
@@ -795,6 +804,7 @@ function log(formulario){
 /**
  * búsqueda básica de películas, por título
  */
+if(session){
 document.querySelector("#movieSearch").addEventListener("input", e => {
     const v = e.target.value.toLowerCase();
     document.querySelectorAll("#movies div.card").forEach(c => {
@@ -804,7 +814,7 @@ document.querySelector("#movieSearch").addEventListener("input", e => {
         c.style.display = ok ? '' : 'none';
     });
 })
-
+}
 
 
 // cosas que exponemos para poder usarlas desde la consola

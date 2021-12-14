@@ -279,9 +279,8 @@
                     <div class="col-auto">
                         <span><img id="imagenes-barra-nav" src="./img/camara.png" alt="peliculas"><h2 id="h2-nav-bar">Peliculas </h2></span>
                     </div>
-                    <div class="col input-group mb-3">
-                        <input type="search" class="form-control" id="movieSearch" placeholder="Busca por título de Pelicula" aria-describedby="searchMovieLabel">
-                        <span class="input-group-text" id="searchMovieLabel">🔍</span>
+                    <div id ="barraBusqueda" class="col input-group mb-3">
+                        
                     </div>
                     <div id = "botonPelicula">
                     
@@ -320,10 +319,6 @@
                             <img id="imagenes-barra-nav" src="./img/grupo.png" alt="Grupos"><h2 id="h2-nav-bar">Grupos</h2>
                         </span>
                     </div>
-                    <!--<div class="col input-group mb-3">
-                        <input type="search" class="form-control" id="groupSearch" placeholder="Busca por nombre de Grupo" aria-describedby="searchGroupLabel">
-                        <span class="input-group-text" id="searchGroup">🔍</span>
-                    </div>-->
                 </div>
                 <div id="botonGrupo">
                 
@@ -403,10 +398,6 @@
                             <img id="imagenes-barra-nav" src="./img/usuario.png" alt="Usuario"><h2 id="h2-nav-bar">Usuarios</h2>
                         </span>
                     </div>
-                <!-- <div class="col input-group mb-3">
-                        <input type="search" class="form-control" id="userSearch" placeholder="Busca por nombre de Usuario" aria-describedby="searchUserLabel">
-                        <span class="input-group-text" id="searchUser">🔍</span>
-                    </div>-->
                 </div>
                 <div id="botonUsuario">
                     
@@ -470,7 +461,11 @@ Hello, World!
 
         </div>
     </div>
-
+    <div id ="mensajebienvenida" class="justify-content-center">
+        <h1 style="text-align: center; color: #0d6efd;">
+            Bienvenido a PIU, Inicia sesión para acceder al sistema
+        </h1>
+    </div>
     <!-- Modal de selección de categorías (lanzado por un botón) -->
     <div class="modal fade" id="modalSeleccionCategoria" tabindex="-1" role="dialog" aria-labelledby="tituloModalCategorias" aria-hidden="true" hidden>
         <div class="modal-dialog" role="document">
