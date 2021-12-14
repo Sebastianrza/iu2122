@@ -474,6 +474,17 @@ function update() {
         appendTo('#botonGrupo', createButtonGroup());
         appendTo("#login-nav", createLogin());
         appendTo("#barraBusqueda", botonBusqueda());
+
+        document.querySelector("#movieSearch").addEventListener("input", e => {
+            const v = e.target.value.toLowerCase();
+            document.querySelectorAll("#movies div.card").forEach(c => {
+                const m = Pmgr.resolve(c.dataset.id);
+                // aquí podrías aplicar muchos más criterios
+                const ok = m.name.toLowerCase().indexOf(v) >= 0;
+                c.style.display = ok ? '' : 'none';
+            });
+        });
+        
         // y añadimos manejadores para los eventos de los elementos recién creados
         // botones de borrar películas
         document.querySelectorAll(".iucontrol.movie button.rm").forEach(b =>
@@ -804,17 +815,7 @@ function log(formulario){
 /**
  * búsqueda básica de películas, por título
  */
-if(session){
-document.querySelector("#movieSearch").addEventListener("input", e => {
-    const v = e.target.value.toLowerCase();
-    document.querySelectorAll("#movies div.card").forEach(c => {
-        const m = Pmgr.resolve(c.dataset.id);
-        // aquí podrías aplicar muchos más criterios
-        const ok = m.name.toLowerCase().indexOf(v) >= 0;
-        c.style.display = ok ? '' : 'none';
-    });
-})
-}
+
 
 
 // cosas que exponemos para poder usarlas desde la consola
@@ -826,7 +827,7 @@ window.login = login;
 window.userId = userId;
 window.Pmgr = Pmgr;
 window.stars = stars;
-window.whoami = () => ({ userId, uName,isAdmin });
+window.whoami = () => ({ userId, uName,isAdmin, session});
 // ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
 // ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)
 // Pmgr.populate();
