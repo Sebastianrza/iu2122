@@ -13,13 +13,38 @@ Servidor y código de plantilla para una interfaz de gestión de valoraciones de
 
 ## Cambios realizados
 
+### Funcionalidades incluidas
+
+Acciones sobre películas:
+- Añadir película
+- Editar película
+- Eliminar película
+- Buscar película por título.
+
+Acciones sobre usuarios:
+- Añadir usuario
+- Editar usuario
+- Eliminar usuario
+
+Acciones sobre grupos:
+- Añadir grupo
+- Editar grupo
+- Eliminar grupo
+
+Acciones sobre ratings:
+- Añadir valoración 
+- Editar valoración
+
+Acciones sobre requests:
+- Hacer request de un usuario a un grupo.
+
+Login:
+- Iniciar sesión e identificar si se trata de un usuario o un administrador.
+- Ocultar funcionalidades que no están disponibles para usuarios.
+
 ### Funcionalidades que faltan/por terminar
 
 En el apartado de las peticiones queda pendiente ajustar la funcionalidad de crear una nueva solicitud, ya que en el estado actual se permite a un usuario solicitar unirse a un grupo en el que ya está presente. Por otro lado, también es necesario implementar la posibilidad de manejar las solicitudes, tanto para aceptar como para rechazar.
-
-Con respecto a las valoraciones, aunque ya está implementada la posibilidad de modificarlas, no se puede cambiar únicamente el texto asociado a la valoración. Además queda pendiente añadir opción de eliminar una valoración.
-
-Por último, a nivel de usuario se está trabajando en la funcionalidad de modificar, encontrando especcial dificulat en conseguir que el botón dedicado a esa acción funcione correctamente.
 
 
 ### Cambios con respecto a la practica 5 (prototipo)
