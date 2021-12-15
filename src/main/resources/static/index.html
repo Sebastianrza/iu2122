@@ -16,7 +16,23 @@
 </head>
 
 <body>
-
+    <!--Modal para confirmar-->
+    <div class="modal fade" id="confirmacion" tabindex="-1" aria-labelledby="confirmar" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de eliminar esto?
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-primary edit" data-bs-dismiss="modal">Si</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modal para dar un rating a una película -->
     <div class="modal fade" id="movieRate" tabindex="-1" aria-labelledby="movieRateLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -118,14 +134,14 @@
                     <h3 class="modal-title">Editando Usuario</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div id="msg"></div>
+                <div id="msg"></div>
                     <div id="error" class="alert alert-danger ocultar" role="alert">
                         Las contraseñas no coinciden, inténtalo nuevamente!!!
                     </div>
                     <div id="ok" class="alert alert-success ocultar" role="alert">
-                        Enviando formulario...!
-                    </div>
+                        Actualizando el Usuario...!
+                </div>
+                <div class="modal-body">
                     <form class="row" id="userEditForm">
                         <input type="hidden" name="id">
                         <div class="col-md-8">
@@ -138,7 +154,7 @@
                             <input type="password" class="form-control" id="pass1" name = "pass1" placeholder="Introduce nuevamente la contraseña" required>
                         </div>
                         <div class="col-12 botones">
-                            <button class="btn btn-primary edit" data-bs-dismiss="modal" aria-label="Close" type="submit">Guardar cambios</button>
+                            <button class="btn btn-primary edit" aria-label="Close" type="submit">Guardar cambios</button>
                         </div>
                     </form>
                 </div>
@@ -178,6 +194,13 @@
                     <h5 class="modal-title" id="userSessionLabel">Iniciando Sesión</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div id="msg"></div>
+                        <div id="error" class="alert alert-danger ocultar" role="alert">
+                            Invalid username or password!!!
+                        </div>
+                        <div id="ok" class="alert alert-success ocultar" role="alert">
+                            Iniciando Sesión...!
+                        </div>
                 <div class="modal-body">
                     <form class="row" id="userSessionForm"> 
                         <div class="col-md-8">
@@ -355,7 +378,7 @@
                                     <input type="password" class="form-control" id="pass1" name = "pass1" placeholder="Introduce nuevamente la contraseña" required>
                                 </div>
                                 <div class="col-12 botones">
-                                    <button class="btn btn-primary" type="submit" data-bs-dismiss="modal" aria-label="Close">Añadir</button>
+                                    <button class="btn btn-primary" type="submit" data-bs-dismiss=" " aria-label="Close">Añadir</button>
                                 </div>
                             </form>
                         </div>
@@ -363,33 +386,7 @@
                 </div>
             </div>
             
-            <!--Modal para abrir modificar usuario-->
-            <div id="userEdit" class="formularioValidado modal fade" aria-labelledby="modificaUsuario" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title">Editando Usuario</h3>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="row" id="#userEditForm">
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="Nuevo nombre del usuario" required>
-                                </div>
-                                <div class="col-md-8"> 
-                                    <input type="password" class="form-control" id="pass" name = "pass" placeholder="Introduce nueva contraseña" required>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="password" class="form-control" id="pass1" name = "pass1" placeholder="Introduce nuevamente la contraseña" required>
-                                </div>
-                                <div class="col-12 botones">
-                                    <button class="btn btn-primary edit" data-bs-dismiss="modal" aria-label="Close" type="submit">Guardar cambios</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 <!--Termina modal-->
             <div class="col-sm-4 iulist tab-pane fade" role="tabpanel" aria-labelledby="user-tab" id="collapseUser">
                 <div class="row">
@@ -463,7 +460,7 @@ Hello, World!
     </div>
     <div id ="mensajebienvenida" class="justify-content-center">
         <h1 style="text-align: center; color: #0d6efd;">
-            Bienvenido a PIU, Inicia sesión para acceder al sistema
+            Bienvenido a Piu, Inicia sesión para acceder al sistema
         </h1>
     </div>
     <!-- Modal de selección de categorías (lanzado por un botón) -->

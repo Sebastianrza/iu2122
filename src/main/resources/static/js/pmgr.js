@@ -195,7 +195,7 @@ function createUserItem(user) {
             ${allPending}
         <div>
         <div class="row-sm-1 iucontrol user">
-            <button class="rm ${hid}" data-id="${user.id}">🗑️</button>
+            <button class="rm ${hid}" href="#confirmacion" data-bs-toogle="modal" data-id="${user.id}">🗑️</button>
             <button class="edit ${hid}" data-id="${user.id}">✏️</button>
         </div>        
     </div>
@@ -245,13 +245,13 @@ function createButtonUser(){
 
 function validarPass(){
     if(document.getElementById("pass").value != document.getElementById("pass1").value){
-       // document.getElementById("error").classList.add("mostrar");
-        alert("Contraseñas incorrecta");
+        document.getElementById("error").classList.add("mostrar");
+        // alert("Contraseñas incorrecta");
         return false;
     }else{
         //alert("Contraseña correcta, Procesando formulario...!")
-        //document.getElementById("error").classList.remove("mostrar");
-        //document.getElementById("ok").classList.remove("ocultar");
+        document.getElementById("error").classList.remove("mostrar");
+        document.getElementById("ok").classList.remove("ocultar");
         
         return true;
     }
@@ -511,8 +511,12 @@ function update() {
         // botones de borrar películas
         document.querySelectorAll(".iucontrol.movie button.rm").forEach(b =>
             b.addEventListener('click', e => {
-                const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
-                Pmgr.rmMovie(id).then(update);
+                const id = e.target.dataset.id;
+                modalConfirmacion.show();
+                document.querySelector("#confirmacion button.edit").addEventListener('click', e => {
+                    e.preventDefault();
+                    Pmgr.rmMovie(id).then(update);
+                });
             }));
         // botones de editar películas
         document.querySelectorAll(".iucontrol.movie button.edit").forEach(b =>
@@ -591,8 +595,15 @@ function update() {
             }));
         // botones de borrar grupos
         document.querySelectorAll(".iucontrol.group button.rm").forEach(b =>
-            b.addEventListener('click', e => Pmgr.rmGroup(e.target.dataset.id).then(update)));
-        
+            b.addEventListener('click', e => {
+                let idTarget = e.target.dataset.id;
+                modalConfirmacion.show();
+                document.querySelector("#confirmacion button.edit").addEventListener('click', e => {
+                    e.preventDefault();
+                    Pmgr.rmGroup(idTarget).then(update);
+                });
+            }));
+            
             // botón request grupo DA PROBLEMAS
         document.querySelectorAll(".iucontrol.group button.request").forEach(b =>
             b.addEventListener('click', e => {
@@ -608,9 +619,16 @@ function update() {
 
         // botones de borrar usuarios
         document.querySelectorAll(".iucontrol.user button.rm").forEach(b =>
-            b.addEventListener('click', e => Pmgr.rmUser(e.target.dataset.id).then(update)));
-        //borrar ratings
-     //   document.querySelectorAll("").forEach(b => b.addEventListener('click', e => Pmgr.rmRating(e.target.dataset.id).then(update)));
+            b.addEventListener('click', e => {
+                let idTarget = e.target.dataset.id;
+                modalConfirmacion.show();
+                document.querySelector("#confirmacion button.edit").addEventListener('click', e => {
+                    e.preventDefault();
+                    Pmgr.rmUser(idTarget).then(update);
+                });
+            }));
+            
+        
 
     } catch (e) {
         console.log('Error actualizando', e);
@@ -636,6 +654,7 @@ const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'))
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
 const modalEditGroup = new bootstrap.Modal(document.querySelector('#groupEdit'));
 const modalEditUser  = new bootstrap.Modal(document.querySelector('#userEdit'));
+const modalConfirmacion = new bootstrap.Modal(document.querySelector('#confirmacion'));
 
 // si lanzas un servidor en local, usa http://localhost:8080/
 const serverUrl = "http://gin.fdi.ucm.es/iu/";
@@ -680,6 +699,7 @@ function log(formulario){
             
         isAdmin = Pmgr.state.users.find( u => u.username == user).role == "ADMIN,USER"; // busca el rol del usuario
         session = true;
+        
         formulario.reset();
         update(d);
     })
@@ -700,6 +720,7 @@ function log(formulario){
         }
     });
 }
+
 {
     /** 
      * Asocia comportamientos al formulario de añadir películas 
@@ -763,7 +784,6 @@ function log(formulario){
             }
         } else {
             e.preventDefault();
-            f.querySelector("button[type=submit]").click(); // fuerza validacion local
         }
     });
 }
