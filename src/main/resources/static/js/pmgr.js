@@ -141,6 +141,8 @@ function createGroupItem(group) {
 
     ).join(" ");
     var hid = isAdmin ? " " : "hidden";
+    let ownerGroup = Pmgr.resolve(group.owner).username == uName;
+    var owuser = ownerGroup ? " " : "hidden";
     return `
     <div class="card">
     <div class="card-header">
@@ -156,7 +158,9 @@ function createGroupItem(group) {
         </div>
         <div class="row-sm-1 iucontrol group">
             <button class="rm ${hid}" data-id="${group.id}">🗑️</button>
-            <button class="edit" data-id="${group.id}">✏️</button>
+            
+            <button class="edit ${owuser}" data-id="${group.id}">✏️</button>
+
             <button class="request" data-id="${group.id}">💌</button>
         </div>
     </div>              
@@ -445,6 +449,24 @@ function activaBusquedaDropdown(div, actualiza) {
 // Función que refresca toda la interfaz. Debería llamarse tras cada operación
 // por ejemplo, Pmgr.addGroup({"name": "nuevoGrupo"}).then(update); // <--
 //
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+        }, false)
+    })
+})()
 function update() {
     const appendTo = (sel, html) =>
         document.querySelector(sel).insertAdjacentHTML("beforeend", html);
