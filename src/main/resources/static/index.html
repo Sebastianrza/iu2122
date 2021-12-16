@@ -186,6 +186,15 @@
             </div>
         </div>
     </div>
+    <!--Alerta contraseña incorrecta-->
+    <div id="alertaIni"class="text-white position-fixed bottom-0 end-0 p-3 bg-danger toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Nombre de usuario o contraseña incorrecto!!!
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
     <!--Modal de inicio de sesión-->
     <div class="formularioValidado modal fade" id="userSession" tabindex="-1" aria-labelledby="userSessionLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -194,13 +203,6 @@
                     <h5 class="modal-title" id="userSessionLabel">Iniciando Sesión</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div id="msg"></div>
-                        <div id="error" class="alert alert-danger ocultar" role="alert">
-                            Invalid username or password!!!
-                        </div>
-                        <div id="ok" class="alert alert-success ocultar" role="alert">
-                            Iniciando Sesión...!
-                        </div>
                 <div class="modal-body">
                     <form class="row" id="userSessionForm"> 
                         <div class="col-md-8">
@@ -211,7 +213,7 @@
                         </div>
                         <div class="col-12 botones">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary aceptar" data-bs-dismiss="modal">Iniciar Sesión</button>
+                            <button type="submit" class="btn btn-primary aceptar">Iniciar Sesión</button>
                         </div>
                     </form>
                 </div>

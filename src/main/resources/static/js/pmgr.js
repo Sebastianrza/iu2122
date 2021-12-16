@@ -655,11 +655,13 @@ const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'))
 const modalEditGroup = new bootstrap.Modal(document.querySelector('#groupEdit'));
 const modalEditUser  = new bootstrap.Modal(document.querySelector('#userEdit'));
 const modalConfirmacion = new bootstrap.Modal(document.querySelector('#confirmacion'));
-
+const modalLogin = new bootstrap.Modal(document.querySelector('#userSession'));
+const alertaInicio = new bootstrap.Toast(document.querySelector('#alertaIni'));
 // si lanzas un servidor en local, usa http://localhost:8080/
 const serverUrl = "http://gin.fdi.ucm.es/iu/";
 //const serverUrl = "http://localhost:8080/";
 Pmgr.connect(serverUrl + "api/");
+
 
 // guarda el ID que usaste para hacer login en userId
 let userId = -1;
@@ -690,7 +692,7 @@ let session="";
 function log(formulario){
     let user = formulario.querySelector('input[name="username"]').value;
     let pass = formulario.querySelector('input[name="pass"]').value;
-    
+    session = false;
     Pmgr.login(user, pass).then(d => {
         console.log("login ok!", d);
         userId = Pmgr.state.users.find( u => u.username == user).id; //busca el usuario
@@ -699,16 +701,17 @@ function log(formulario){
             
         isAdmin = Pmgr.state.users.find( u => u.username == user).role == "ADMIN,USER"; // busca el rol del usuario
         session = true;
-        
+        modalLogin.hide();
         formulario.reset();
         update(d);
-    })
-    .catch(e => {
+    }).catch(e => {
+        modalLogin.hide();
+        alertaInicio.show();
         console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
         console.log(`el servidor dice: "${e.text}"`);
-        
     });
 }
+
 {
     const f = document.querySelector("#userSession form");
 
